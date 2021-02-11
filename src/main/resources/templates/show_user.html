@@ -12,7 +12,7 @@
 
 <a th:href="@{/user_list/{id}/edit(id=${key.getId()})}">Update User</a>
 
-<form th:method="DELETE" th:action="@{/user_list/{id}(id=${key.getId()})}">
+<form th:method="POST" th:action="@{/user_list/{id}/delete(id=${key.getId()})}">
     <input type="submit" value="Delete"/>
 </form>
 

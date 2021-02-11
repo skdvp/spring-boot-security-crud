@@ -79,7 +79,7 @@ public class UserController {
         return "redirect:/admin";
     }
 
-    @DeleteMapping(value = "/user_list/{id}")
+    @PostMapping(value = "/user_list/{id}/delete")
     // DELETE user_list/:id HTML форма удаления записи
     public String delete(@PathVariable("id") Long id) {
         userService.removeUserById(id);
