@@ -8,13 +8,10 @@ public interface RoleService {
 
     List<Role> getAllRoles();
 
-    List<String>  getAllRolesNamesStringArray();
+    Role getRoleById(Long id);
 
     void saveRole(Role role);
 
     void deleteRoleById(Long id);
 
-    Role getRoleById(Long id);
-
-    Role getByRoleName(String roleName);
 }

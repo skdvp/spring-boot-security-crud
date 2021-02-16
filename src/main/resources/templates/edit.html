@@ -6,20 +6,37 @@
 </head>
 <body>
 
-<form th:method="POST" th:action="@{/user_list/{id}(id=${keyEdit.getId()})}" th:object="${keyEdit}">
+<form th:method="POST" th:action="@{/update-user}" th:object="${user}">
 
     <label for="name">Enter name: </label>
     <input type="text" th:field="*{name}" id="name"/>
-
+    <br/>
     <label for="name">Enter surname: </label>
     <input type="text" th:field="*{surname}" id="surname"/>
-
+    <br/>
     <label for="name">Enter age: </label>
     <input type="text" th:field="*{age}" id="age"/>
+    <br/>
+    <label for="name">Enter username: </label>
+    <input type="text" th:field="*{username}" id="username"/>
+    <br/>
+    <label for="name">Enter password: </label>
+    <input type="text" th:field="*{password}" id="password"/>
 
+<!--    <label>-->
+<!--        <select multiple size="2" name="rolesIdSelect" th:required="true">-->
+<!--            <option value=""> - Select role - </option>-->
+<!--            <option-->
+<!--                    th:each="role : ${roles_list}"-->
+<!--                    th:value="${role.id}"-->
+<!--                    th:text="${role.name}"-->
+<!--                    th:selected="${#lists.contains(roles_list, role)}">-->
+<!--            </option>-->
+<!--        </select>-->
+    </label>
 
     <br/>
-    <input type="submit" value="Update!!"/>
+    <input type="submit" value="Update"/>
 </form>
 
 </body>

@@ -17,7 +17,10 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints =
+        {
+                @UniqueConstraint(columnNames = "username"),
+        })
 public class User implements UserDetails {
 
     @Id

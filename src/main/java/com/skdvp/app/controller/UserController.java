@@ -38,14 +38,13 @@ public class UserController {
     public String showAllUsers(Model model) {
         // GET /user_list всех людей из DAO и передаём на отображение в представление
         model.addAttribute("key", userService.showAllUsers());
-        model.addAttribute("string_role_array", roleService.getAllRolesNamesStringArray());
         return "user_list";
     }
 
     @GetMapping(value = "/user_list/{id}")
     public String showUser(@PathVariable("id") Long id, Model model) {
         // GET /user_list/:id получим одного человека по id из DAO и передаём на отображение в представление
-        model.addAttribute("key", userService.showUser(id));
+        model.addAttribute("key", userService.showUser(id).get());
         return "show_user";
     }
 
@@ -59,7 +58,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/admin/saveUser")
-    public String saveUser(@ModelAttribute("user") User user, @RequestParam(value = "rolesIdSelect") Long idRole) {
+    public String saveUser(@ModelAttribute("user") User user, @RequestParam(value = "rolesIdSelect") Long[] idRole) {
         // POST /user_list создаём новую запись
         userService.saveUser(user, idRole);
         return "redirect:/admin";
@@ -68,14 +67,16 @@ public class UserController {
     @GetMapping(value = "/user_list/{id}/edit")
     // GET /user_list/:id/edit HTML форма редактирование записи
     public String edit(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("keyEdit", userService.showUser(id));
+        model.addAttribute("user", userService.showUser(id).get());
+        model.addAttribute("roles_list", roleService.getAllRoles());
+
         return "edit";
     }
 
-    @PostMapping(value = "/user_list/{id}")
+    @PostMapping(value = "/update-user")
     // PATCH /user_list/:id HTML форма обновления записи
-    public String updateUser(@PathVariable("id") Long id, @ModelAttribute("keyEdit") User updateUser) {
-        userService.updateUser(id, updateUser);
+    public String updateUser(@ModelAttribute("user") User updateUser) {
+        userService.updateSaveUser(updateUser);
         return "redirect:/admin";
     }
 

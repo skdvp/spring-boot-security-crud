@@ -1,4 +1,4 @@
-create database preDB3110;
+# create database preDB3110;
 
 use preDB3110;
 

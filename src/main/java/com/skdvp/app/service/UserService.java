@@ -3,22 +3,24 @@ package com.skdvp.app.service;
 import com.skdvp.app.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface UserService {
+public interface UserService  {
 
-    User getUserByName(String name);
+
+    User findByUsername(String name);
 
     /*==========================CRUD=================================*/
 
     List<User> showAllUsers();
 
-    User showUser(Long id);
+    Optional<User> showUser(Long id);
 
-    User saveUser(User user, Long idRole);
-
-    void updateUser(Long id, User updateUser);
+    User saveUser(User user, Long [] idRole);
 
     void removeUserById(Long id);
+
+    User updateSaveUser(User user);
 
 
 }
